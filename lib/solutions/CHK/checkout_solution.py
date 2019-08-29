@@ -48,15 +48,19 @@ def checkout(skus: str) -> Optional[int]:
 
     # Add all totals for valid SKUs
     total_value += calcATotal(basket.pop("A", 0))
-    total_value += calcBTotal(basket.pop("B", 0))
     total_value += basket.pop("C", 0) * 20
     total_value += basket.pop("D", 0) * 15
+    e_vol = basket.pop("E", 0) * 40
+    total_value += e_vol * 40
 
+    basket["B"] = max(0, basket.get("B", 0) - divmod(e_vol, 2)[0])
+    total_value += calcBTotal(basket.pop("B", 0))
     # Return -1 if there are any SKUs that remain
     if basket:
         return -1
 
     return total_value
+
 
 
 
