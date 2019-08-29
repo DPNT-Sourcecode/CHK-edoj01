@@ -51,9 +51,10 @@ def checkout(skus: str) -> Optional[int]:
     total_value += basket.pop("D", 0) * 15
 
     # Return -1 if there are any SKUs that remain
-    if not isempty(basket):
+    if basket:
         return -1
 
     return total_value
+
 
 
