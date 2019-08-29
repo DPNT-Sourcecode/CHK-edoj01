@@ -55,6 +55,3 @@ def checkout(skus: str) -> Optional[int]:
 
     if not isinstance(skus, str):
         return -1
-
-
-
