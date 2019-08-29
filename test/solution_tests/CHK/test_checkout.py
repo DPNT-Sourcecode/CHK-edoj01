@@ -3,7 +3,7 @@ from solutions.CHK import checkout_solution
 
 def test_checkout():
     assert checkout_solution.checkout("ABCD") == 115
-    assert checkout_solution.checkout("ABCDE") == 114
+    assert checkout_solution.checkout("ABCDE") == -1
 
 
 
@@ -19,5 +19,6 @@ def test_calcATotal():
 def test_calcBTotal():
     assert checkout_solution.calcBTotal(1) == 30
     assert checkout_solution.calcBTotal(13) == 300
+
 
 

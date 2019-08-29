@@ -50,8 +50,10 @@ def checkout(skus: str) -> Optional[int]:
     total_value += basket.pop("C", 0) * 20
     total_value += basket.pop("D", 0) * 15
 
-    # Reduce the total by 1 for each SKU that is not valid
-    total_value -= sum(basket.values())
+    # Return -1 if there are any SKUs that remain
+    if not isempty(basket):
+        return -1
 
     return total_value
+
 
