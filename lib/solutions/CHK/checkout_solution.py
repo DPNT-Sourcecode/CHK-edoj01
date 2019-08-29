@@ -24,12 +24,23 @@ NO_DISCOUNT_SKUS = [
   ["C", 20],
 ]
 
+
 CROSS_ITEM_DISCOUNTS_CONF = [
   ["E", 2, "B", 1],
   ["N", 3, "M", 1],
   ["R", 3, "Q", 1],
 ]
 
+
+def apply_discounts(basket):
+    for item, vol, discount_item, discount_vol in CROSS_ITEM_DISCOUNTS_CONF:
+        to_discount = divmod(basket.get(item, 0), vol)
+        basket[discount_item] = max(
+            0,
+            basket.get(discount_item, 0) - to_discount
+        )
+
+    return basket
 
 
 def sum_of_sku(
@@ -114,7 +125,7 @@ def checkout(skus: str) -> Optional[int]:
     """
     total_value = 0
     basket = Counter(skus)
-
+    basket = apply_discounts(basket)
     # Add all totals for valid SKUs
     total_value += calcATotal(basket.pop("A", 0))
     total_value += calcFTotal(basket.pop("F", 0))
@@ -130,5 +141,6 @@ def checkout(skus: str) -> Optional[int]:
         return -1
 
     return total_value
+
 
 
