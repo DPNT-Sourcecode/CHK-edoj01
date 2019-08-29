@@ -143,10 +143,3 @@ def checkout(skus: str) -> Optional[int]:
         return -1
 
     return total_value
-
-
-
-
-
-
-
