@@ -25,3 +25,8 @@ def test_calcBTotal():
 def test_calcFTotal():
     assert checkout_solution.calcFTotal(1) == 10
     assert checkout_solution.calcFTotal(9) == 60
+
+
+def test_calc_stxyz():
+    assert checkout_solution.calc_stxyz("STYXZ") == 112
+    assert checkout_solution.calc_stxyz("STYXZUUU") == 60
