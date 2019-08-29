@@ -7,7 +7,7 @@ def test_checkout():
     assert checkout_solution.checkout("ABCDEF") == 165
     assert checkout_solution.checkout("ABCDEFG") == 185
     assert checkout_solution.checkout("ABC4") == -1
-    assert checkout_solution.checkout("CXYZYZC") == 40
+    assert checkout_solution.checkout("CXYZYZC") == 105
     assert checkout_solution.checkout("K") == 80
     assert checkout_solution.checkout("S") == 20
 
