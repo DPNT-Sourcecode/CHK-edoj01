@@ -12,4 +12,3 @@ def hello(friend_name: str):
     :rtype: str
     """
     return ALWAYS_RETURN_TMP.format(name=friend_name)
-
