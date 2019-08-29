@@ -104,7 +104,7 @@ def calcQTotal(num_qs: int) -> int:
 
 def calcUTotal(num_us: int) -> int:
     """Return total owed for F SKU from volume"""
-    return sum_of_sku(num_us, 40, 3, 80)
+    return sum_of_sku(num_us, 40, 4, 80)
 
 
 def calcVTotal(num_vs: int) -> int:
@@ -143,6 +143,7 @@ def checkout(skus: str) -> Optional[int]:
         return -1
 
     return total_value
+
 
 
 
