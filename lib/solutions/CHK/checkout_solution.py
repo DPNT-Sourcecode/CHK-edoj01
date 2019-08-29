@@ -141,10 +141,11 @@ def checkout(skus: str) -> Optional[int]:
     for sku in STXYZ_PRICE.keys():
         basket.pop(sku, 0)
 
+    total_value += sum(basket.pop(sku, 0) * sku_price for sku, sku_price in NO_DISCOUNT_SKUS)
+
     if not basket:
         return total_value
 
-    total_value = sum(basket.pop(sku, 0) * sku_price for sku, sku_price in NO_DISCOUNT_SKUS)
     # Add all totals for valid SKUs
     total_value += calcATotal(basket.pop("A", 0))
     total_value += calcBTotal(basket.pop("B", 0))
@@ -161,4 +162,5 @@ def checkout(skus: str) -> Optional[int]:
         return -1
 
     return total_value
+
 
