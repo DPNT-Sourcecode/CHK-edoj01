@@ -1,15 +1,5 @@
+from collections import Counter
 from typing import Optional
-"""
-Our price table and offers: 
-+------+-------+----------------+
-| Item | Price | Special offers |
-+------+-------+----------------+
-| A    | 50    | 3A for 130     |
-| B    | 30    | 2B for 45      |
-| C    | 20    |                |
-| D    | 15    |                |
-+------+-------+----------------+
-"""
 
 
 def sum_of_sku(
@@ -28,9 +18,8 @@ def sum_of_sku(
     :returns: total price for the items of SKU
     :rtype integer:
     """
-    if special_vol is not None:
-        specials, whole_price = divmod(num_items, special_vol)
-        return (specials * special_price) + (whole_price * price)
+    specials, whole_price = divmod(num_items, special_vol)
+    return (specials * special_price) + (whole_price * price)
 
 
 def calcATotal(num_as: int) -> int:
@@ -49,9 +38,20 @@ def checkout(skus: str) -> Optional[int]:
     """Return -1 is sku is not a string.
 
     :param skus: Product skus for checkout
+    :return: Total value of basket
     :rtype: integer
     """
-    A_vol = 
+    total_value = 0
+    basket = Counter(skus)
 
-    if not isinstance(skus, str):
-        return -1
+    # Add all totals for valid SKUs
+    total_value += calcATotal(basket.pop("A", 0))
+    total_value += calcBTotal(basket.pop("B", 0))
+    total_value += basket.pop("C", 0) * 20
+    total_value += basket.pop("D", 0) * 15
+
+    # Reduce the total by 1 for each SKU that is not valid
+    total_value -= sum(basket.values())
+
+    return total_value
+
