@@ -28,5 +28,6 @@ def test_calcFTotal():
 
 
 def test_calc_stxyz():
-    assert checkout_solution.calc_stxyz("STYXZ") == 112
-    assert checkout_solution.calc_stxyz("STYXZUUU") == 60
+    assert checkout_solution.calc_stxyz("STY") == 45
+    assert checkout_solution.calc_stxyz("STYXZ") == 72
+    assert checkout_solution.calc_stxyz("STYXZTUUU") == 90

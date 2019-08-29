@@ -39,7 +39,7 @@ def calc_stxyz(skus):
     prices.sort(reverse=True)
     num_in_discount = len(prices)
     total_discount = divmod(num_in_discount, 3)[0]
-    return (total_discount * 45) + sum(prices[total_discount:])
+    return (total_discount * 45) + sum(prices[total_discount * 3:])
 
 
 def apply_discounts(basket):
