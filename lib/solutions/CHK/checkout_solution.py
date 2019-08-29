@@ -24,7 +24,9 @@ def sum_of_sku(
 
 def calcATotal(num_as: int) -> int:
     """Return total owed for A SKU from volume"""
-    return sum_of_sku(num_as, 50, 3, 130)
+    biggest_discout_vol, remainder = divmod(num_as, 5)
+    value = biggest_discout_vol * 200
+    return value + sum_of_sku(num_as, 50, 3, 130)
 
 
 def calcBTotal(num_bs: int) -> int:
@@ -55,6 +57,7 @@ def checkout(skus: str) -> Optional[int]:
         return -1
 
     return total_value
+
 
 
 
