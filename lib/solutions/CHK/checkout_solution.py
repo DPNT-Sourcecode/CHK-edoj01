@@ -62,8 +62,23 @@ def calcATotal(num_as: int) -> int:
 def calcHTotal(num_hs: int) -> int:
     """Return total owed for H SKU from volume"""
     biggest_discount_vol, remainder = divmod(num_hs, 10)
-    value = biggest_discount_vol * 200
+    value = biggest_discount_vol * 80
     return value + sum_of_sku(remainder, 10, 5, 45)
+
+
+def calcKTotal(num_ks: int) -> int:
+    """Return total owed for H SKU from volume"""
+    return sum_of_sku(num_ks, 80, 2, 150)
+
+
+def calcPTotal(num_ps: int) -> int:
+    """Return total owed for P SKU from volume"""
+    return sum_of_sku(num_ps, 50, 5, 200)
+
+
+def calcQTotal(num_ps: int) -> int:
+    """Return total owed for Q SKU from volume"""
+    return sum_of_sku(num_ps, 30, 3, 80)
 
 
 def calcVTotal(num_vs: int) -> int:
@@ -85,7 +100,7 @@ def calcFTotal(num_fs: int) -> int:
 
 def calcUTotal(num_us: int) -> int:
     """Return total owed for F SKU from volume"""
-    return sum_of_sku(num_us, 10, 3, 20)
+    return sum_of_sku(num_us, 40, 3, 80)
 
 
 # noinspection PyUnusedLocal
@@ -115,3 +130,4 @@ def checkout(skus: str) -> Optional[int]:
         return -1
 
     return total_value
+
