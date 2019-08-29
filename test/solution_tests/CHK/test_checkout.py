@@ -8,6 +8,8 @@ def test_checkout():
     assert checkout_solution.checkout("ABCDEFG") == 185
     assert checkout_solution.checkout("ABC4") == -1
     assert checkout_solution.checkout("CXYZYZC") == 40
+    assert checkout_solution.checkout("K") == 80
+    assert checkout_solution.checkout("S") == 20
 
 def test_sum_of_sku():
     assert checkout_solution.sum_of_sku(1,1,1,1) == 1
@@ -31,4 +33,5 @@ def test_calc_stxyz():
     assert checkout_solution.calc_stxyz("STY") == 45
     assert checkout_solution.calc_stxyz("STYXZ") == 72
     assert checkout_solution.calc_stxyz("STYXZTUUU") == 90
+
 
