@@ -9,4 +9,3 @@ def compute(x: int, y: int) -> int:
     :rtype: int
     """
     return x + y
-

@@ -1,4 +1,4 @@
-
+ALWAYS_RETURN_STR= "Hello, World!" 
 
 # noinspection PyUnusedLocal
 # friend_name = unicode string
@@ -9,5 +9,4 @@ def hello(friend_name: str):
     :type friend_name: string
     :rtype: int
     """
-    return "Any String"
-
+    return ALWAYS_RETURN_STR

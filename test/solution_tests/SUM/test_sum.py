@@ -9,5 +9,3 @@ from hypothesis.strategies import integers
 )
 def test_sum(x, y):
     assert sum_solution.compute(x, y) == x + y
-
-
