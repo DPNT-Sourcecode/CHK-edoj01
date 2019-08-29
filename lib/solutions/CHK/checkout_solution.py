@@ -30,7 +30,7 @@ STXYZ_PRICE = {
   "S": 20,
   "T": 20,
   "X": 17,
-  "Y": 10,
+  "Y": 20,
 }
 
 
@@ -162,5 +162,6 @@ def checkout(skus: str) -> Optional[int]:
         return -1
 
     return total_value
+
 
 
