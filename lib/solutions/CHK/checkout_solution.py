@@ -101,7 +101,7 @@ def calcHTotal(num_hs: int) -> int:
 
 def calcKTotal(num_ks: int) -> int:
     """Return total owed for H SKU from volume"""
-    return sum_of_sku(num_ks, 80, 2, 150)
+    return sum_of_sku(num_ks, 70, 2, 120)
 
 
 def calcPTotal(num_ps: int) -> int:
