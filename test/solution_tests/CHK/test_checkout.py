@@ -5,7 +5,8 @@ def test_checkout():
     assert checkout_solution.checkout("ABCD") == 115
     assert checkout_solution.checkout("ABCDE") == 155
     assert checkout_solution.checkout("ABCDEF") == 165
-    assert checkout_solution.checkout("ABCDEFG") == -1
+    assert checkout_solution.checkout("ABCDEFG") == 185
+    assert checkout_solution.checkout("ABC4") == -1
 
 
 def test_sum_of_sku():

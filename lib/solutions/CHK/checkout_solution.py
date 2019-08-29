@@ -18,6 +18,10 @@ NO_DISCOUNT_SKUS = [
   ["X", 90],
   ["Y", 10],
   ["Z", 50],
+
+  ["E", 40],
+  ["N", 40],
+  ["R", 50],
 ]
 
 
@@ -139,6 +143,7 @@ def checkout(skus: str) -> Optional[int]:
         return -1
 
     return total_value
+
 
 
 
