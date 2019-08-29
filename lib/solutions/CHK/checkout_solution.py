@@ -9,19 +9,15 @@ NO_DISCOUNT_SKUS = [
   ["G", 20],
   ["I", 35],
   ["J", 60],
-  ["L", 20],
-  ["C", 20],
-  ["C", 20],
-  ["C", 20],
-  ["C", 20],
-  ["C", 20],
-  ["C", 20],
-  ["C", 20],
-  ["C", 20],
-  ["C", 20],
-  ["C", 20],
-  ["C", 20],
-  ["C", 20],
+  ["L", 90],
+  ["M", 15],
+  ["O", 10],
+  ["S", 30],
+  ["T", 20],
+  ["W", 20],
+  ["X", 90],
+  ["Y", 10],
+  ["Z", 50],
 ]
 
 
@@ -34,7 +30,7 @@ CROSS_ITEM_DISCOUNTS_CONF = [
 
 def apply_discounts(basket):
     for item, vol, discount_item, discount_vol in CROSS_ITEM_DISCOUNTS_CONF:
-        to_discount = divmod(basket.get(item, 0), vol)
+        to_discount = divmod(basket.get(item, 0), vol)[0]
         basket[discount_item] = max(
             0,
             basket.get(discount_item, 0) - to_discount
@@ -99,7 +95,7 @@ def calcPTotal(num_ps: int) -> int:
 
 def calcQTotal(num_qs: int) -> int:
     """Return total owed for Q SKU from volume"""
-    return sum_of_sku(num_ps, 30, 3, 80)
+    return sum_of_sku(num_qs, 30, 3, 80)
 
 
 def calcUTotal(num_us: int) -> int:
@@ -123,24 +119,27 @@ def checkout(skus: str) -> Optional[int]:
     :return: Total value of basket
     :rtype: integer
     """
-    total_value = 0
     basket = Counter(skus)
     basket = apply_discounts(basket)
+
+    total_value = sum(basket.pop(sku, 0) * sku_price for sku, sku_price in NO_DISCOUNT_SKUS)
     # Add all totals for valid SKUs
     total_value += calcATotal(basket.pop("A", 0))
-    total_value += calcFTotal(basket.pop("F", 0))
-    total_value += basket.pop("C", 0) * 20
-    total_value += basket.pop("D", 0) * 15
-    e_vol = basket.pop("E", 0)
-    total_value += e_vol * 40
-
-    basket["B"] = max(0, basket.get("B", 0) - divmod(e_vol, 2)[0])
     total_value += calcBTotal(basket.pop("B", 0))
+    total_value += calcFTotal(basket.pop("F", 0))
+    total_value += calcHTotal(basket.pop("H", 0))
+    total_value += calcKTotal(basket.pop("K", 0))
+    total_value += calcPTotal(basket.pop("P", 0))
+    total_value += calcQTotal(basket.pop("Q", 0))
+    total_value += calcUTotal(basket.pop("U", 0))
+    total_value += calcVTotal(basket.pop("V", 0))
+
     # Return -1 if there are any SKUs that remain
     if basket:
         return -1
 
     return total_value
+
 
 
 
