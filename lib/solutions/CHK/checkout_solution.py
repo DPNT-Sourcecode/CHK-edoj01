@@ -38,8 +38,6 @@ def calc_stxyz(skus):
     prices = [STXYZ_PRICE[sku] for sku in skus if sku in STXYZ_PRICE]
     prices.sort(reverse=True)
     num_in_discount = len(prices)
-    if num_in_discount < 3:
-        return sum(prices)
     total_discount = divmod(num_in_discount, 3)[0]
     return (total_discount * 45) + sum(prices[total_discount * 3:])
 
@@ -141,6 +139,8 @@ def checkout(skus: str) -> Optional[int]:
     for sku in STXYZ_PRICE.keys():
         basket.pop(sku, 0)
 
+    if not basket:
+        return total_value
 
     total_value = sum(basket.pop(sku, 0) * sku_price for sku, sku_price in NO_DISCOUNT_SKUS)
     # Add all totals for valid SKUs
@@ -159,7 +159,3 @@ def checkout(skus: str) -> Optional[int]:
         return -1
 
     return total_value
-
-
-
-
