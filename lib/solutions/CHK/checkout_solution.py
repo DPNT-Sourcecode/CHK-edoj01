@@ -34,6 +34,11 @@ def calcBTotal(num_bs: int) -> int:
     return sum_of_sku(num_bs, 30, 2, 45)
 
 
+def calcFTotal(num_fs: int) -> int:
+    """Return total owed for F SKU from volume"""
+    return sum_of_sku(num_fs, 10, 3, 20)
+
+
 # noinspection PyUnusedLocal
 # skus = unicode string
 def checkout(skus: str) -> Optional[int]:
@@ -48,6 +53,7 @@ def checkout(skus: str) -> Optional[int]:
 
     # Add all totals for valid SKUs
     total_value += calcATotal(basket.pop("A", 0))
+    total_value += calcFTotal(basket.pop("F", 0))
     total_value += basket.pop("C", 0) * 20
     total_value += basket.pop("D", 0) * 15
     e_vol = basket.pop("E", 0)
