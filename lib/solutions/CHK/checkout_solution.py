@@ -12,13 +12,7 @@ NO_DISCOUNT_SKUS = [
   ["L", 90],
   ["M", 15],
   ["O", 10],
-  ["S", 30],
-  ["T", 20],
   ["W", 20],
-  ["X", 90],
-  ["Y", 10],
-  ["Z", 50],
-
   ["E", 40],
   ["N", 40],
   ["R", 50],
@@ -30,6 +24,17 @@ CROSS_ITEM_DISCOUNTS_CONF = [
   ["N", 3, "M", 1],
   ["R", 3, "Q", 1],
 ]
+
+STXYZ_PRICE = {
+  "Z": 21,
+  "S": 20,
+  "T": 20,
+  "X": 17,
+  "Y": 10,
+}
+
+def calc_stxyz(skus):
+    total_stxyz = sum()
 
 
 def apply_discounts(basket):
@@ -143,3 +148,4 @@ def checkout(skus: str) -> Optional[int]:
         return -1
 
     return total_value
+
