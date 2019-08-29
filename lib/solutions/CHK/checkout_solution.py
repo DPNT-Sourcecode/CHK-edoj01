@@ -34,7 +34,12 @@ STXYZ_PRICE = {
 }
 
 def calc_stxyz(skus):
-    total_stxyz = sum()
+    prices = [STXYZ_PRICE[sku] if sku in STXYZ_PRICE for sku in skus]
+    num_in_discount = len(prices)
+    total_discount = divmod(num_in_discount, 3)[0]
+    return (total_discount * 45) + sum(prices[total_discount:])
+
+
 
 
 def apply_discounts(basket):
@@ -148,4 +153,5 @@ def checkout(skus: str) -> Optional[int]:
         return -1
 
     return total_value
+
 
