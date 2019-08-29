@@ -24,4 +24,3 @@ def test_calcBTotal():
 def test_calcFTotal():
     assert checkout_solution.calcFTotal(1) == 10
     assert checkout_solution.calcFTotal(9) == 60
-

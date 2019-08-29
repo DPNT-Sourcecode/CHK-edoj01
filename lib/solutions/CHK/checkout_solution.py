@@ -1,5 +1,35 @@
 from collections import Counter
 from typing import Optional
+import attr
+
+
+NO_DISCOUNT_SKUS = [
+  ["C", 20],
+  ["D", 15],
+  ["G", 20],
+  ["I", 35],
+  ["J", 60],
+  ["L", 20],
+  ["C", 20],
+  ["C", 20],
+  ["C", 20],
+  ["C", 20],
+  ["C", 20],
+  ["C", 20],
+  ["C", 20],
+  ["C", 20],
+  ["C", 20],
+  ["C", 20],
+  ["C", 20],
+  ["C", 20],
+]
+
+CROSS_ITEM_DISCOUNTS_CONF = [
+  ["R", 3, "Q", 1],
+  ["N", 3, "M", 1],
+  ["E", 2, "B", 1],
+]
+
 
 
 def sum_of_sku(
@@ -29,6 +59,20 @@ def calcATotal(num_as: int) -> int:
     return value + sum_of_sku(remainder, 50, 3, 130)
 
 
+def calcHTotal(num_hs: int) -> int:
+    """Return total owed for H SKU from volume"""
+    biggest_discount_vol, remainder = divmod(num_hs, 10)
+    value = biggest_discount_vol * 200
+    return value + sum_of_sku(remainder, 10, 5, 45)
+
+
+def calcVTotal(num_vs: int) -> int:
+    """Return total owed for H SKU from volume"""
+    biggest_discount_vol, remainder = divmod(num_vs, 3)
+    value = biggest_discount_vol * 130
+    return value + sum_of_sku(remainder, 50, 2, 90)
+
+
 def calcBTotal(num_bs: int) -> int:
     """Return total owed for B SKU from volume"""
     return sum_of_sku(num_bs, 30, 2, 45)
@@ -37,6 +81,11 @@ def calcBTotal(num_bs: int) -> int:
 def calcFTotal(num_fs: int) -> int:
     """Return total owed for F SKU from volume"""
     return sum_of_sku(num_fs, 10, 3, 20)
+
+
+def calcUTotal(num_us: int) -> int:
+    """Return total owed for F SKU from volume"""
+    return sum_of_sku(num_us, 10, 3, 20)
 
 
 # noinspection PyUnusedLocal
@@ -66,4 +115,3 @@ def checkout(skus: str) -> Optional[int]:
         return -1
 
     return total_value
-
