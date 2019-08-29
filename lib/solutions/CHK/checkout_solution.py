@@ -25,9 +25,9 @@ NO_DISCOUNT_SKUS = [
 ]
 
 CROSS_ITEM_DISCOUNTS_CONF = [
-  ["R", 3, "Q", 1],
-  ["N", 3, "M", 1],
   ["E", 2, "B", 1],
+  ["N", 3, "M", 1],
+  ["R", 3, "Q", 1],
 ]
 
 
@@ -59,6 +59,16 @@ def calcATotal(num_as: int) -> int:
     return value + sum_of_sku(remainder, 50, 3, 130)
 
 
+def calcBTotal(num_bs: int) -> int:
+    """Return total owed for B SKU from volume"""
+    return sum_of_sku(num_bs, 30, 2, 45)
+
+
+def calcFTotal(num_fs: int) -> int:
+    """Return total owed for F SKU from volume"""
+    return sum_of_sku(num_fs, 10, 3, 20)
+
+
 def calcHTotal(num_hs: int) -> int:
     """Return total owed for H SKU from volume"""
     biggest_discount_vol, remainder = divmod(num_hs, 10)
@@ -76,9 +86,14 @@ def calcPTotal(num_ps: int) -> int:
     return sum_of_sku(num_ps, 50, 5, 200)
 
 
-def calcQTotal(num_ps: int) -> int:
+def calcQTotal(num_qs: int) -> int:
     """Return total owed for Q SKU from volume"""
     return sum_of_sku(num_ps, 30, 3, 80)
+
+
+def calcUTotal(num_us: int) -> int:
+    """Return total owed for F SKU from volume"""
+    return sum_of_sku(num_us, 40, 3, 80)
 
 
 def calcVTotal(num_vs: int) -> int:
@@ -86,21 +101,6 @@ def calcVTotal(num_vs: int) -> int:
     biggest_discount_vol, remainder = divmod(num_vs, 3)
     value = biggest_discount_vol * 130
     return value + sum_of_sku(remainder, 50, 2, 90)
-
-
-def calcBTotal(num_bs: int) -> int:
-    """Return total owed for B SKU from volume"""
-    return sum_of_sku(num_bs, 30, 2, 45)
-
-
-def calcFTotal(num_fs: int) -> int:
-    """Return total owed for F SKU from volume"""
-    return sum_of_sku(num_fs, 10, 3, 20)
-
-
-def calcUTotal(num_us: int) -> int:
-    """Return total owed for F SKU from volume"""
-    return sum_of_sku(num_us, 40, 3, 80)
 
 
 # noinspection PyUnusedLocal
@@ -130,4 +130,5 @@ def checkout(skus: str) -> Optional[int]:
         return -1
 
     return total_value
+
 
