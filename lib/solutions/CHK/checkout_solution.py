@@ -33,13 +33,12 @@ STXYZ_PRICE = {
   "Y": 10,
 }
 
+
 def calc_stxyz(skus):
     prices = [STXYZ_PRICE[sku] if sku in STXYZ_PRICE for sku in skus]
     num_in_discount = len(prices)
     total_discount = divmod(num_in_discount, 3)[0]
     return (total_discount * 45) + sum(prices[total_discount:])
-
-
 
 
 def apply_discounts(basket):
@@ -133,8 +132,12 @@ def checkout(skus: str) -> Optional[int]:
     :return: Total value of basket
     :rtype: integer
     """
+    total_value = calc_stxyz(skus)
     basket = Counter(skus)
     basket = apply_discounts(basket)
+    for sku in STXYZ_PRICE.keys():
+        basket.pop(sku, 0)
+
 
     total_value = sum(basket.pop(sku, 0) * sku_price for sku, sku_price in NO_DISCOUNT_SKUS)
     # Add all totals for valid SKUs
@@ -153,5 +156,6 @@ def checkout(skus: str) -> Optional[int]:
         return -1
 
     return total_value
+
 
 
